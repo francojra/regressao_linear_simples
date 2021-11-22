@@ -27,4 +27,22 @@ dados %>%
 
 # Visualizando as correlações --------------------------------------------------------------------------------------------------------------
 
+## Circunferência x Altura
+
+ggplot(dados, aes(x = Girth, y = Height)) +
+  geom_point()
+  
+## Circunferência x Volume
+
+ggplot(dados, aes(x = Girth, y = Volume)) +
+  geom_point()
+
+## Volume x Altura
+
+ggplot(dados, aes(x = Volume, y = Height)) +
+  geom_point()
+
+
+# Análises estatísticas --------------------------------------------------------------------------------------------------------------------
+
 
