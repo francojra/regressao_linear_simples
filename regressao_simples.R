@@ -45,4 +45,18 @@ ggplot(dados, aes(x = Volume, y = Height)) +
 
 # Análises estatísticas --------------------------------------------------------------------------------------------------------------------
 
+modelo1 <- lm(data = dados, formula = Girth ~ Height)
 
+modelo1$coefficients
+# Resultado: efeito positivo da altura de 20%
+
+summary(modelo1)
+# Resultado: efeito significativo de acordo com o valor de p < 0.05
+
+modelo2 <- lm(data = dados, formula = Girth ~ Volume)
+
+modelo2$coefficients
+# Resultado: efeito positivo da altura de 20%
+
+summary(modelo2)
+# Resultado: efeito significativo de acordo com o valor de p < 0.05
