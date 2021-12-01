@@ -9,4 +9,10 @@ A relação entre as variáveis deve ser linear no gráfico e apenas duas variá
 
 ## Roteiro do script
 
-- 
+- Carregando pacotes necessários;
+- Carregando conjunto de dados;
+- Descrição dos dados;
+- Visualizando as correlações;
+- Análises estatísticas da regressão linear simples;
+- Análises dos resíduos dos modelos;
+- Interpretação final.
