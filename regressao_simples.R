@@ -1,38 +1,38 @@
 
-# Regress„o linear simples -----------------------------------------------------------------------------------------------------------------
+# Regress√£o linear simples -----------------------------------------------------------------------------------------------------------------
 
 
-# Carregando pacotes necess·rios -----------------------------------------------------------------------------------------------------------
+# Carregando pacotes necess√°rios -----------------------------------------------------------------------------------------------------------
 
 library(tibble) # Pacote para ler tabela simplificada
-library(dplyr) # Pacote para calcular a mÈdia, desvios, etc.
-library(ggplot2) # Pacote para produzir os gr·ficos
+library(dplyr) # Pacote para calcular a m√©dia, desvios, etc.
+library(ggplot2) # Pacote para produzir os gr√°ficos
 
 # Carregando conjunto de dados -------------------------------------------------------------------------------------------------------------
 
-datasets::trees # Escolher banco de dados disponÌvel no R
+datasets::trees # Escolher banco de dados dispon√≠vel no R
 tibble(trees) # Carrega bando de dados
 
-# DescriÁ„o dos dados ----------------------------------------------------------------------------------------------------------------------
+# Descri√ß√£o dos dados ----------------------------------------------------------------------------------------------------------------------
 
 dados <- trees
 
 dados %>%
-  summarise(mean(Girth), mean(Height), mean(Volume),
-            sd(Girth), sd(Height), sd(Volume),
-            seG = sd(Girth) / sqrt(length(Girth)),
+  summarise(mean(Girth), mean(Height), mean(Volume), # C√°lculos da m√©dia
+            sd(Girth), sd(Height), sd(Volume), # C√°lculos do desvio-padr√£o
+            seG = sd(Girth) / sqrt(length(Girth)), # C√°lculos do erro-padr√£o
             seH = sd(Height) / sqrt(length(Height)),
             seV = sd(Volume) / sqrt(length(Volume)))
 
 
-# Visualizando as correlaÁıes --------------------------------------------------------------------------------------------------------------
+# Visualizando as correla√ß√µes --------------------------------------------------------------------------------------------------------------
 
-## CircunferÍncia x Altura
+## Circunfer√™ncia x Altura
 
 ggplot(dados, aes(x = Girth, y = Height)) +
   geom_point()
   
-## CircunferÍncia x Volume
+## Circunfer√™ncia x Volume
 
 ggplot(dados, aes(x = Girth, y = Volume)) +
   geom_point()
@@ -42,7 +42,7 @@ ggplot(dados, aes(x = Girth, y = Volume)) +
 ggplot(dados, aes(x = Volume, y = Height)) +
   geom_point()
 
-# An·lises estatÌsticas --------------------------------------------------------------------------------------------------------------------
+# An√°lises estat√≠sticas --------------------------------------------------------------------------------------------------------------------
 
 modelo1 <- lm(data = dados, formula = Girth ~ Height)
 
@@ -71,7 +71,7 @@ modelo3$coefficients
 summary(modelo3)
 # Resultado: efeito significativo de acordo com o valor de p < 0.05
 
-# An·lises dos resÌduos dos modelos --------------------------------------------------------------------------------------------------------
+# An√°lises dos res√≠duos dos modelos --------------------------------------------------------------------------------------------------------
 
 par(mfrow = c(2,2))
 plot(modelo1, which = c(1:4), pch = 20)
@@ -86,10 +86,10 @@ plot(modelo3, which = c(1:4), pch = 20)
 bartlett.test(dados, Volume ~ Height)
 shapiro.test(modelo3$residuals)
 
-# InterpretaÁ„o final ----------------------------------------------------------------------------------------------------------------------
+# Interpreta√ß√£o final ----------------------------------------------------------------------------------------------------------------------
 
-# Os resÌduos dos modelos n„o apresentaram distribuiÁ„o normal, portanto, 
-# os modelos n„o atendem aos pressupostos da regress„o linear simples.
-# Nesse caso, È necess·rio realizar outro teste estatÌstico para interpretaÁ„o
-# dessas correlaÁıes, como o teste de regress„o n„o-paramÈtrica, correlaÁ„o
-# de Spearman (sem causalidade ente as vari·veis) ou os testes GLMs.
+# Os res√≠duos dos modelos n√£o apresentaram distribui√ß√£o normal, portanto, 
+# os modelos n√£o atendem aos pressupostos da regress√£o linear simples.
+# Nesse caso, √© necess√°rio realizar outro teste estat√≠stico para interpreta√ß√£o
+# dessas correla√ß√µes, como o teste de regress√£o n√£o-param√©trica, correla√ß√£o
+# de Spearman (sem causalidade ente as vari√°veis) ou os testes GLMs.
